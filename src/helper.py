@@ -2,6 +2,7 @@ import fitz # PyMuPDF
 import os 
 from dotenv import load_dotenv
 from openai import OpenAI
+from apify_client import ApifyClient
 
 
 load_dotenv()
@@ -11,6 +12,7 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
 client = OpenAI(api_key=OPENAI_API_KEY)
+apify_client = ApifyClient(token=os.getenv("APIFY_API_TOKEN"))
 
 
 def extract_text_from_pdf(uploaded_file):
