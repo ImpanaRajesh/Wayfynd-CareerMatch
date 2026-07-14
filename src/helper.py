@@ -7,11 +7,11 @@ from apify_client import ApifyClient
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1")
 apify_client = ApifyClient(token=os.getenv("APIFY_API_TOKEN"))
 
 
@@ -48,7 +48,7 @@ def ask_openai(prompt, max_tokens=500):
     
 
     response = client.chat.completions.create(
-        model= "gpt-4o",
+        model="llama-3.3-70b-versatile",
         messages=[
             {
                 "role": "user",
